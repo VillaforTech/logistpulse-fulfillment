@@ -1,12 +1,12 @@
-# LogistPulse Reference — Observable order fulfillment
+# LogistPulse Fulfillment
 
-This repository is the complete engineering reference for LogistPulse's fulfillment flow. It follows an accepted order through preparation, durable event delivery, recoverable analytics and a live Grafana dashboard, then proves that the release process catches an order stuck before `READY` even while the platform remains technically healthy.
+LogistPulse Fulfillment tracks orders from acceptance through preparation to readiness. We are building live operations dashboards, automatic delay detection and event processing that recovers after interruptions without losing order history.
 
-It complements the team-owned [LogistPulse repository](https://github.com/VillaforTech/logistpulse). The code is an executable integration target and evidence model; teammates review and adapt it through their own pull requests rather than receiving automatic contribution credit.
+The project develops the order-fulfillment workflow also explored in the team-owned [LogistPulse repository](https://github.com/VillaforTech/logistpulse). Team contributions and integrations are tracked through pull requests.
 
 > Stores, orders and amounts are synthetic. Values are demo monetary units and do not represent real revenue or transactions.
 
-## What this reference demonstrates
+## What we are building
 
 - Valid `WAITING → PREPARING → READY` transitions with persistent timestamps and revisions.
 - Transactional order and outbox writes plus stable, retryable event publication.
@@ -54,7 +54,7 @@ bash scripts/smoke.sh
 | Prometheus | <http://localhost:29090> |
 | cAdvisor, optional | <http://localhost:28088> |
 
-In Codespaces, open port `28080`; configuration detects its forwarded URL for the Grafana proxy. The `logistpulse-reference` Compose project isolates networks and volumes from other checkouts.
+In Codespaces, open port `28080`; configuration detects its forwarded URL for the Grafana proxy. The Docker Compose project isolates networks and volumes from other checkouts.
 
 Create and inspect an order:
 
@@ -106,11 +106,11 @@ See the [versioned Codespaces evidence](docs/evidence/codespaces-20260915/README
 
 ## Failure story
 
-The reference preserves a deliberately broken revision where eight services report healthy while an accepted order remains `PREPARING` after its deadline. Timers raise the business indicators, the oracle fails and the required gate blocks the pull request at that exact SHA. The corrected revision restores `READY` and passes the same pipeline.
+The project preserves a deliberately broken revision where eight services report healthy while an accepted order remains `PREPARING` after its deadline. Timers raise the business indicators, the oracle fails and the required gate blocks the pull request at that exact SHA. The corrected revision restores `READY` and passes the same pipeline.
 
 ## Relationship to the team project
 
-| Shared workstream | Reference implementation |
+| Workstream | Implementation |
 | --- | --- |
 | Domain and events | `services/logist/{domain,fulfillment,storage,relay,worker}.py` |
 | Analytics | `services/logist/analytics.py`, projection and database tests |
@@ -118,7 +118,7 @@ The reference preserves a deliberately broken revision where eight services repo
 | Platform integration | Isolated Compose stack, readiness and required CI gate |
 | Verification | Business, resilience, browser and evidence scripts |
 
-This reference was implemented by Roberto Villafuerte with Codex assistance. It preserves the original repository history but does not imply that other team members authored its changes. Their portfolio credit belongs to work reviewed and integrated in the shared repository.
+This project was implemented by Roberto Villafuerte with Codex assistance. It preserves the original repository history but does not imply that other team members authored its changes. Their portfolio credit belongs to work reviewed and integrated in the shared repository.
 
 
 ## Verification evidence
