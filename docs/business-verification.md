@@ -1,4 +1,4 @@
-# Deber 01 — El Falso Verde: referencia LogistPulse
+# LogistPulse — Business verification and recovery
 
 ## 1. Capability crítica
 
@@ -10,7 +10,7 @@ El smoke técnico comprueba consola, inventario, distribución, telemetría, cre
 
 ## 3. Riesgo para negocio
 
-Una orden aceptada queda sin entregar. Aumentan la proporción de promesas incumplidas, el valor de pedidos vencidos y los segundos de deuda de preparación. Son [L-K1/L-K2/L-K3](kpis-deber-01.md), con muestra y unidad explícitas.
+Una orden aceptada queda sin entregar. Aumentan la proporción de promesas incumplidas, el valor de pedidos vencidos y los segundos de deuda de preparación. Son [L-K1/L-K2/L-K3](business-kpis.md), con muestra y unidad explícitas.
 
 ## 4. Flujo del bloqueo
 
@@ -52,7 +52,7 @@ Para el fallo de negocio, la corrección conserva READY y readyAt en la transacc
 
 ## 9. Ejecución final y reproducción
 
-Seguir el README desde clon limpio/Codespaces: generar `.env`, arrancar, smoke, unit, PostgreSQL, contrato, 100 renders y resiliencia. Guardar commit, recursos y artifacts. El PR #2 restaura exactamente la transición READY y sus tests; su sección Checks y descripción enlazan el nuevo run de corrección una vez concluido. La evidencia histórica anterior conserva sus SHAs originales. La [reproducción completa en Codespaces limpio](evidence/codespaces-20260915/README.md) pasó el 15 de septiembre en `ba93646a30ad`: unitarias, PostgreSQL, negocio, 100/100 renders con p95 594.2 ms y recuperación. La consola privada también mostró snapshots FRESH correlacionados. Se guardó evidencia y se retiró el entorno temporal. No se afirma reproducción por otra persona, merge, aprobación ni entrega D2L.
+Seguir el README desde clon limpio/Codespaces: generar `.env`, arrancar, smoke, unit, PostgreSQL, contrato, 100 renders y resiliencia. Guardar commit, recursos y artifacts. El PR #2 restaura exactamente la transición READY y sus tests; su sección Checks y descripción enlazan el nuevo run de corrección una vez concluido. La evidencia histórica anterior conserva sus SHAs originales. La [reproducción completa en Codespaces limpio](evidence/codespaces-20260915/README.md) pasó el 15 de septiembre en `ba93646a30ad`: unitarias, PostgreSQL, negocio, 100/100 renders con p95 594.2 ms y recuperación. La consola privada también mostró snapshots FRESH correlacionados. Se guardó evidencia y se retiró el entorno temporal. No se afirma reproducción por otra persona, merge ni aprobación.
 
 La referencia implementa ambos contratos de infraestructura y negocio; la adaptación al repositorio compartido sigue su propio flujo de PR y revisión. El gemelo no cambia los permisos del original.
 
