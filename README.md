@@ -102,7 +102,7 @@ The final branch passed:
 - a clean local devcontainer reproduction;
 - a fresh 4-core Codespace reproduction with p95 594.2 ms.
 
-See the [versioned Codespaces evidence](docs/evidence/codespaces-20260915/README.md), [business event contract](docs/events-deber-01.md), [KPI definitions](docs/kpis-deber-01.md), [architecture decisions](docs/adr/README.md) and [observability guide](observability/README.md).
+See the [versioned Codespaces evidence](docs/evidence/codespaces-20260915/README.md), [business event contract](docs/business-events.md), [KPI definitions](docs/business-kpis.md), [architecture decisions](docs/adr/README.md) and [observability guide](observability/README.md).
 
 ## Failure story
 
@@ -120,6 +120,7 @@ The reference preserves a deliberately broken revision where eight services repo
 
 This reference was implemented by Roberto Villafuerte with Codex assistance. It preserves the original repository history but does not imply that other team members authored its changes. Their portfolio credit belongs to work reviewed and integrated in the shared repository.
 
-## Project context
 
-The system also satisfies a graded software-engineering scenario. Course-specific diagnosis, rubric evidence and submission records remain in [docs/deber-01.md](docs/deber-01.md). They are secondary to the product narrative but remain explicit for auditability.
+## Verification evidence
+
+See [business verification and recovery](docs/business-verification.md) for failure scenarios, diagnosis, release controls and reproducible results.

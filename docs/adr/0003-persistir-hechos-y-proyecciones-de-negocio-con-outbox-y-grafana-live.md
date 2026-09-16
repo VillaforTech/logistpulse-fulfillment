@@ -12,7 +12,7 @@ La creación HTTP y los health checks no prueban la promesa READY <=15s. Publica
 
 ## Decision
 
-Usar [outbox transaccional, inbox y hechos versionados](../events-deber-01.md). Analytics posee una DB y rol separados, bootstrap por API, proyección y offsets atómicos, control de cobertura y timer de 200ms. Publica snapshots por WebSocket a un adapter de Grafana Live nativo. El [gate](../../.github/workflows/ci.yml) exige pruebas de dominio, transacciones, negocio, render y recuperación; el job de diagnóstico no depende del éxito unitario.
+Usar [outbox transaccional, inbox y hechos versionados](../business-events.md). Analytics posee una DB y rol separados, bootstrap por API, proyección y offsets atómicos, control de cobertura y timer de 200ms. Publica snapshots por WebSocket a un adapter de Grafana Live nativo. El [gate](../../.github/workflows/ci.yml) exige pruebas de dominio, transacciones, negocio, render y recuperación; el job de diagnóstico no depende del éxito unitario.
 
 Se descartan publicación directa sin outbox y polling de una lista limitada. También se descarta presentar auto-refresh de Grafana como streaming: el benchmark observa el canal WebSocket y el render de la identidad solicitada.
 
