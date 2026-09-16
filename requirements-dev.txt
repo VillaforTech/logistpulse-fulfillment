@@ -1,0 +1,4 @@
+-r services/runtime/requirements.txt
+pytest==8.4.1
+PyYAML==6.0.2
+black==25.1.0

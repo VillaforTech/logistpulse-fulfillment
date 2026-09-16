@@ -1,23 +1,29 @@
-name: LOGISTPULSE CI
+name: LOGISTPULSE Reference CI
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
-
 permissions:
   contents: read
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
 jobs:
   architecture-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Record exact tested commit
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          mkdir -p artifacts
+          git rev-parse HEAD > artifacts/tested-sha.txt
+          test "$(cat artifacts/tested-sha.txt)" = "$EXPECTED_SHA"
       - name: Validate architecture decision records
         run: |
           ./scripts/adr --version
@@ -32,55 +38,165 @@ jobs:
           test -f observability/compose.yaml
           test -f observability/prometheus.yml
           for s in inventory-api logistics-api operations-api fulfillment-api; do test -f services/$s/app.py; done
-      - name: Validate Compose
+      - name: Validate isolated Compose
         run: |
-          docker compose config --quiet
-          docker compose -f observability/compose.yaml config --quiet
-  integration:
+          python3 scripts/configure.py
+          bash scripts/compose.sh config --quiet
+  unit:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     needs: architecture-contract
     steps:
       - uses: actions/checkout@v4
-      - name: Build and start LOGISTPULSE
-        run: docker compose up -d --build
-      - name: Wait and smoke test
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Record exact tested commit
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          for i in $(seq 1 60); do if curl -fsS http://localhost:8080/ >/dev/null 2>&1; then break; fi; sleep 3; done
-          bash scripts/smoke.sh
-      - name: Start observability control plane
-        run: docker compose -f observability/compose.yaml up -d prometheus grafana
-      - name: Validate observability health
+          mkdir -p artifacts
+          git rev-parse HEAD > artifacts/tested-sha.txt
+          test "$(cat artifacts/tested-sha.txt)" = "$EXPECTED_SHA"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - name: Domain, timing, coverage and transport contracts
+        run: python -m pytest tests/unit -q --junitxml=artifacts/unit.xml
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reject adversarial browser KPI observations
+        run: node --test tests/browser/*.test.mjs > artifacts/browser-oracle.tap
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-evidence
+          path: artifacts/
+          if-no-files-found: error
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: architecture-contract
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Record exact tested commit
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          for i in $(seq 1 30); do if curl -fsS http://localhost:9090/-/ready >/dev/null 2>&1; then break; fi; sleep 2; done
-          curl -fsS http://localhost:9090/-/ready
-          for i in $(seq 1 30); do if curl -fsS http://localhost:3000/api/health >/dev/null 2>&1; then break; fi; sleep 2; done
-          curl -fsS http://localhost:3000/api/health | grep -q ok
-      - name: Stop observability
+          mkdir -p artifacts
+          git rev-parse HEAD > artifacts/tested-sha.txt
+          test "$(cat artifacts/tested-sha.txt)" = "$EXPECTED_SHA"
+      - name: Build and start reference
+        run: bash scripts/up.sh
+      - name: Original technical assertions
+        run: bash scripts/smoke.sh
+      - name: Observability health
+        run: |
+          curl -fsS http://localhost:29090/-/ready
+          curl -fsS http://localhost:23000/api/health | grep -q ok
+      - name: Preserve runtime evidence before teardown
         if: always()
-        run: docker compose -f observability/compose.yaml down || true
-      - name: Container status on failure
-        if: failure()
-        run: docker compose ps && docker compose logs --tail=250
-      - name: Stop stack
+        run: bash scripts/capture.sh
+      - uses: actions/upload-artifact@v4
         if: always()
-        run: docker compose down -v
-
+        with:
+          name: technical-evidence
+          path: artifacts/
+          if-no-files-found: error
+      - name: Stop reference
+        if: always()
+        run: bash scripts/down.sh
+  business-lab:
+    name: Business lab and native streaming
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Independent from unit: the broken implementation still exposes its business evidence.
+    needs: architecture-contract
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Record exact tested commit
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          mkdir -p artifacts
+          git rev-parse HEAD > artifacts/tested-sha.txt
+          test "$(cat artifacts/tested-sha.txt)" = "$EXPECTED_SHA"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: pip install httpx==0.28.1
+      - run: npm ci && npx playwright install --with-deps chromium
+      - name: Start isolated complete platform
+        id: stack
+        run: bash scripts/up.sh
+      - name: Real PostgreSQL transactions and checkpoints
+        if: ${{ !cancelled() && steps.stack.outcome == 'success' }}
+        run: |
+          mkdir -p artifacts
+          chmod 777 artifacts
+          bash scripts/compose.sh run --rm --build database-tests
+      - name: Business promise independent of process health
+        id: business
+        if: ${{ !cancelled() && steps.stack.outcome == 'success' }}
+        run: python scripts/business_test.py
+      - name: Measure 100 API to native Grafana rendered operations
+        if: ${{ !cancelled() && steps.business.outcome == 'success' }}
+        run: npm run browser-test
+      - name: Broker, analytics and Grafana recovery
+        if: ${{ !cancelled() && steps.business.outcome == 'success' }}
+        run: python scripts/resilience_test.py
+      - name: Verify success evidence is complete
+        if: ${{ !cancelled() && steps.business.outcome == 'success' }}
+        run: python scripts/verify_evidence.py
+      - name: Preserve all evidence before teardown
+        if: always()
+        run: bash scripts/capture.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: business-and-streaming-evidence
+          path: artifacts/
+          if-no-files-found: error
+      - name: Stop reference
+        if: always()
+        run: bash scripts/down.sh
   release-gate:
     name: Release gate
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [architecture-contract, integration]
+    needs: [architecture-contract, unit, integration, business-lab]
     if: ${{ always() }}
     steps:
-      - name: Require every CI stage to succeed
+      - name: Require every observed result to succeed
         env:
-          ARCHITECTURE_RESULT: ${{ needs.architecture-contract.result }}
-          INTEGRATION_RESULT: ${{ needs.integration.result }}
+          RESULTS: ${{ toJSON(needs) }}
+          TESTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          set -euo pipefail
-          printf 'Architecture: %s\nIntegration: %s\n' "$ARCHITECTURE_RESULT" "$INTEGRATION_RESULT"
-          if [[ "$ARCHITECTURE_RESULT" != "success" || "$INTEGRATION_RESULT" != "success" ]]; then
-            echo "::error::Release blocked: every required stage must succeed; skipped or cancelled stages do not pass."
-            exit 1
-          fi
+          python3 - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          results=json.loads(os.environ['RESULTS'])
+          passed=all(job['result']=='success' for job in results.values())
+          Path('artifacts').mkdir(exist_ok=True)
+          Path('artifacts/release-gate.json').write_text(json.dumps({'testedSha':os.environ['TESTED_SHA'],'needs':results,'decision':'PASS' if passed else 'BLOCK'},indent=2))
+          for name, job in results.items(): print(f"{name}: {job['result']}")
+          if any(job['result'] != 'success' for job in results.values()):
+              print('::error::Release blocked: failed, skipped and cancelled stages do not pass.')
+              sys.exit(1)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: release-gate-decision
+          path: artifacts/release-gate.json
+          if-no-files-found: error

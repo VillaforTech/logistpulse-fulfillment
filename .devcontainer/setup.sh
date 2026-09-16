@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-if [ ! -f .env ]; then cp .env.example .env; fi
-printf '[LOGISTPULSE] Environment ready. Validate with: docker compose config --services
-'
+python3 scripts/configure.py
+printf 'Reference ready. Start with bash scripts/up.sh; console port 28080.\n'

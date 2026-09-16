@@ -1,0 +1,23 @@
+{
+  "firstLocalFailure": {
+    "testedSha": "310f2d1",
+    "observed": 4,
+    "requested": 100,
+    "lost": 96,
+    "reason": "Async predicate returned a Promise to Playwright waitForFunction. Explicit awaited READY loop corrected in d036cee; original evidence retained locally."
+  },
+  "beforeOptimization": {
+    "testedSha": "d036ceef24331036b7c1542df6e12042b704d51f",
+    "observed": 100,
+    "requested": 100,
+    "lost": 0,
+    "p50Ms": 925.5,
+    "p95Ms": 1078,
+    "maxMs": 1336.199999988079,
+    "passed": false,
+    "errors": [
+      "Error: p95 1078.0ms fails <1000ms"
+    ]
+  },
+  "historyPolicy": "No orders deleted or re-timed. Late preparation remains in L-K1 until it leaves its time cohort."
+}

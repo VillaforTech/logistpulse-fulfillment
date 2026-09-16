@@ -29,13 +29,21 @@ def bootstrap():
       with conn() as c:
         c.execute("CREATE TABLE IF NOT EXISTS trucks(truck_id text primary key, route text, status text, stops_done int, stops_total int, eta_min int, temp_c numeric, lat numeric, lon numeric)")
         if c.execute("SELECT count(*) FROM trucks").fetchone()[0]==0:
-          c.executemany("INSERT INTO trucks VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",[
-            ('TRUCK-017','Quito Norte','IN_TRANSIT',6,11,28,3.8,-0.1807,-78.4678),('TRUCK-023','Quito Sur','LOADING',0,8,64,4.2,-0.245,-78.53)])
+          with c.cursor() as cursor:
+              cursor.executemany("INSERT INTO trucks VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",[
+                ('TRUCK-017','Quito Norte','IN_TRANSIT',6,11,28,3.8,-0.1807,-78.4678),('TRUCK-023','Quito Sur','LOADING',0,8,64,4.2,-0.245,-78.53)])
         c.commit(); return
-    except Exception: time.sleep(1)
-bootstrap()
+    except psycopg.OperationalError: time.sleep(1)
+  raise RuntimeError('Database bootstrap exhausted retries')
+
+@app.on_event('startup')
+def start():
+    bootstrap()
 @app.get('/health')
-def health(): return {'status':'UP','service':'logistics-api'}
+def health():
+    with conn() as c:
+        c.execute('SELECT 1 FROM trucks LIMIT 1').fetchone()
+    return {'status':'UP','service':'logistics-api'}
 @app.get('/api/distribution/trucks')
 def trucks():
   with conn() as c: rows=c.execute("SELECT * FROM trucks ORDER BY truck_id").fetchall()

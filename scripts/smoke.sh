@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-base=${1:-http://localhost:8080}
+base=${1:-http://localhost:28080}
 echo '[1/6] console'
 curl -fsS "$base/" | grep -q LOGISTPULSE
 echo '[2/6] inventory'

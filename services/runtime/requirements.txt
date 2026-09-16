@@ -1,0 +1,7 @@
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+psycopg[binary]==3.2.9
+kafka-python-ng==2.2.3
+prometheus-client==0.22.1
+httpx==0.28.1
+websocket-client==1.8.0

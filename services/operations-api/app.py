@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pymongo import MongoClient
 import os, json, time, threading
 import paho.mqtt.client as mqtt
@@ -24,21 +24,32 @@ def instrument(app, service):
 app=FastAPI(title="LOGISTPULSE Smart Operations API",version="1.0.0")
 instrument(app,"operations-api")
 MONGO=os.getenv('MONGO_URI','mongodb://mongo:27017'); MQTT_HOST=os.getenv('MQTT_HOST','mosquitto')
-client=MongoClient(MONGO); col=client.operations.telemetry
+client=MongoClient(MONGO,serverSelectionTimeoutMS=3000); col=client.operations.telemetry
 
-def on_connect(c,u,f,rc,properties=None): c.subscribe('logistpulse/store/+/device/+/telemetry')
+connected=False
+def on_connect(c,u,f,rc,properties=None):
+  global connected
+  connected=(rc==0)
+  c.subscribe('logistpulse/store/+/device/+/telemetry')
+def on_disconnect(c,u,flags,rc,properties=None):
+  global connected
+  connected=False
 def on_message(c,u,msg):
   try:
     d=json.loads(msg.payload.decode()); d['topic']=msg.topic; d['receivedAt']=time.time(); col.update_one({'deviceId':d['deviceId']},{'$set':d},upsert=True)
   except Exception as e: print('mqtt parse error',e)
 def mqtt_loop():
-  for _ in range(50):
+  while True:
     try:
-      c=mqtt.Client(mqtt.CallbackAPIVersion.VERSION2); c.on_connect=on_connect; c.on_message=on_message; c.connect(MQTT_HOST,1883,60); c.loop_forever(); return
+      c=mqtt.Client(mqtt.CallbackAPIVersion.VERSION2); c.on_connect=on_connect; c.on_disconnect=on_disconnect; c.on_message=on_message; c.connect(MQTT_HOST,1883,60); c.loop_forever(); return
     except Exception as e: print('mqtt waiting',e); time.sleep(2)
-threading.Thread(target=mqtt_loop,daemon=True).start()
+@app.on_event('startup')
+def start_mqtt(): threading.Thread(target=mqtt_loop,daemon=True).start()
 @app.get('/health')
-def health(): return {'status':'UP','service':'operations-api'}
+def health():
+  client.admin.command('ping')
+  if not connected: raise HTTPException(503,'MQTT subscriber unavailable')
+  return {'status':'UP','service':'operations-api'}
 @app.get('/api/operations/{store_id}/devices')
 def devices(store_id:str):
   docs=list(col.find({'storeId':store_id},{'_id':0}).sort('deviceId',1))

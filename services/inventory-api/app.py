@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from stock_risk import stock_risk
 import os, psycopg, time
 
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
@@ -33,20 +34,29 @@ def bootstrap():
                 c.execute("CREATE TABLE IF NOT EXISTS inventory(store_id text, sku text, item_name text, unit text, stock numeric, forecast_4h numeric, PRIMARY KEY(store_id,sku))")
                 n=c.execute("SELECT count(*) FROM inventory").fetchone()[0]
                 if n==0:
-                    c.executemany("INSERT INTO inventory VALUES (%s,%s,%s,%s,%s,%s)",[
-                      ('STORE-042','CHK','Pollo','kg',38,61),('STORE-042','POT','Papas','kg',74,52),('STORE-042','OIL','Aceite','L',21,30),('STORE-042','PKG','Empaques','u',425,310)])
+                    with c.cursor() as cursor:
+                        cursor.executemany("INSERT INTO inventory VALUES (%s,%s,%s,%s,%s,%s)",[
+                          ('STORE-042','CHK','Pollo','kg',38,61),('STORE-042','POT','Papas','kg',74,52),('STORE-042','OIL','Aceite','L',21,30),('STORE-042','PKG','Empaques','u',425,310)])
                 c.commit(); return
-        except Exception: time.sleep(1)
-bootstrap()
+        except psycopg.OperationalError:
+            time.sleep(1)
+    raise RuntimeError('Database bootstrap exhausted retries')
+
+@app.on_event('startup')
+def start():
+    bootstrap()
 
 class Adjustment(BaseModel): delta: float
 @app.get('/health')
-def health(): return {'status':'UP','service':'inventory-api'}
+def health():
+    with conn() as c:
+        c.execute('SELECT 1 FROM inventory LIMIT 1').fetchone()
+    return {'status':'UP','service':'inventory-api'}
 @app.get('/api/inventory/{store_id}')
 def inventory(store_id:str):
     with conn() as c:
         rows=c.execute("SELECT sku,item_name,unit,stock,forecast_4h FROM inventory WHERE store_id=%s ORDER BY item_name",(store_id,)).fetchall()
-    return [{'sku':r[0],'item':r[1],'unit':r[2],'stock':float(r[3]),'forecast4h':float(r[4]),'risk':'HIGH' if r[3]<r[4]*.75 else ('MEDIUM' if r[3]<r[4] else 'LOW')} for r in rows]
+    return [{'sku':r[0],'item':r[1],'unit':r[2],'stock':float(r[3]),'forecast4h':float(r[4]),'risk':stock_risk(r[3],r[4])} for r in rows]
 @app.post('/api/inventory/{store_id}/{sku}/adjust')
 def adjust(store_id:str,sku:str,a:Adjustment):
     with conn() as c:

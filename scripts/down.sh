@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-docker compose -f observability/compose.yaml down 2>/dev/null || true
-docker compose down
+cd "$(dirname "$0")/.."
+bash scripts/compose.sh down
+# Named volumes retain domain facts, projections and offsets. No implicit deletion.

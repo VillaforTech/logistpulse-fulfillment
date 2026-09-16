@@ -1,0 +1,24 @@
+{
+  "formatter": "black25.1.0",
+  "astUnchanged": true,
+  "files": {
+    "services/logist/__init__.py": "c061411feaecfd0ea073e1e6812815be0e0eeea0c587af1650c6bb798bdde2c7",
+    "services/logist/analytics.py": "03a4857f5d2437e7129120dc14ca668ebc92fb7eb61989e7979febfdbaa33990",
+    "services/logist/domain.py": "6351c9013ffe52472a13fa0a353ae0fd504a6edc1a828809eb594ca7fd5f4f3c",
+    "services/logist/fulfillment.py": "f32c33d77a3a3d7bc76b204315a9c62f1f1ae7d74f0773ed14807ec6904b7b44",
+    "services/logist/live.py": "f87271c21e253f75f4fd6002d4902eea53b04cb239654e50fcb0e663fd5311ab",
+    "services/logist/metrics.py": "fd503a9b6e1cafa4273d92ef3b59c287e12fd77fe809ae74effc5cacf7b7d946",
+    "services/logist/relay.py": "b655d83e835c63ea831cb2360db01c9c481b2958c7593333b82bcfe76c50e491",
+    "services/logist/storage.py": "ee4adc7bac10a3463b71bca92bfac30636088adc1bbe02a763cd05cf5e5ce516",
+    "services/logist/worker.py": "968c604468242f50392788c3e923da6385d06751493fddda4fc4ab821f669b3b",
+    "tests/unit/test_domain.py": "169717586d1527ac91372a6305695eea4127d5053929383a87ceb2606fdb84a4",
+    "tests/unit/test_inventory.py": "b4f0d67561508e0861b9b0f898aba15a3d67fc6ba9ca6d950ff44e7bfc8f0ded",
+    "tests/unit/test_transport.py": "3ce03d3bd091dd27c6c589c094267f7b15092775a426eb2c68c568b87cf49f1e",
+    "tests/database/test_transactions.py": "cc83797e175fe84bec23d8c61c5bc8111d46bc2a6ef9ea624db2a48bc75a1bf9",
+    "scripts/configure.py": "344d09688dd4169a1ffd84a94c92c7db107dfc579edb37df084d7d56365b3f1a",
+    "scripts/business_test.py": "cc4ac92fc04bfc051337f0349d330ab30e626f8ee75d8d6dc790a812d99e1365",
+    "scripts/resilience_test.py": "f7d4cf8a227703b53517c426bbb8086fc06cc4df3f0dbe9f5f57f0dc0e52ab2d",
+    "scripts/verify_evidence.py": "7d719fe44dba5962748b65fe84f0f0173b45d99949e375bd9c86800a6cfc577d",
+    "services/inventory-api/stock_risk.py": "5ebc51732c831e9d5e2f6527663f7985e283202711fbcf95ae0ac3bee7cc16ab"
+  }
+}

@@ -1,0 +1,492 @@
+{
+  "uid": "logistpulse-business",
+  "title": "LOGISTPULSE Business",
+  "schemaVersion": 41,
+  "version": 1,
+  "timezone": "browser",
+  "editable": false,
+  "refresh": "5s",
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "tags": [
+    "reference",
+    "business",
+    "Grafana Live"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "logistpulse-business-panel",
+      "title": "L-K1 \u00b7 Promesas incumplidas",
+      "description": "Datasource nativo Grafana Live. El renderer del proyecto invalida esta tarjeta tras 3s sin revisi\u00f3n o con computedAt antiguo.",
+      "datasource": {
+        "type": "grafana",
+        "uid": "grafana"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana",
+            "uid": "grafana"
+          },
+          "queryType": "measurements",
+          "channel": "stream/logistpulse/business",
+          "filter": {
+            "fields": [
+              "lk1",
+              "lk2",
+              "lk3",
+              "sample",
+              "quality",
+              "revision",
+              "aggregate_id",
+              "aggregate_version",
+              "correlation_id",
+              "source_event_id",
+              "computed_at"
+            ]
+          }
+        }
+      ],
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "-1": {
+                  "text": "DATOS NO CONFIABLES",
+                  "color": "gray",
+                  "index": 0
+                },
+                "-2": {
+                  "text": "SIN MUESTRA",
+                  "color": "gray",
+                  "index": 1
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1e-06
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "field": "lk1"
+      }
+    },
+    {
+      "id": 2,
+      "type": "logistpulse-business-panel",
+      "title": "L-K2 \u00b7 Valor vencido (DEMO)",
+      "description": "Datasource nativo Grafana Live. El renderer del proyecto invalida esta tarjeta tras 3s sin revisi\u00f3n o con computedAt antiguo.",
+      "datasource": {
+        "type": "grafana",
+        "uid": "grafana"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana",
+            "uid": "grafana"
+          },
+          "queryType": "measurements",
+          "channel": "stream/logistpulse/business",
+          "filter": {
+            "fields": [
+              "lk1",
+              "lk2",
+              "lk3",
+              "sample",
+              "quality",
+              "revision",
+              "aggregate_id",
+              "aggregate_version",
+              "correlation_id",
+              "source_event_id",
+              "computed_at"
+            ]
+          }
+        }
+      ],
+      "gridPos": {
+        "x": 8,
+        "y": 3,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "-1": {
+                  "text": "DATOS NO CONFIABLES",
+                  "color": "gray",
+                  "index": 0
+                },
+                "-2": {
+                  "text": "SIN MUESTRA",
+                  "color": "gray",
+                  "index": 1
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1e-06
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "field": "lk2"
+      }
+    },
+    {
+      "id": 3,
+      "type": "logistpulse-business-panel",
+      "title": "L-K3 \u00b7 Deuda (pedido\u00b7segundos)",
+      "description": "Datasource nativo Grafana Live. El renderer del proyecto invalida esta tarjeta tras 3s sin revisi\u00f3n o con computedAt antiguo.",
+      "datasource": {
+        "type": "grafana",
+        "uid": "grafana"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana",
+            "uid": "grafana"
+          },
+          "queryType": "measurements",
+          "channel": "stream/logistpulse/business",
+          "filter": {
+            "fields": [
+              "lk1",
+              "lk2",
+              "lk3",
+              "sample",
+              "quality",
+              "revision",
+              "aggregate_id",
+              "aggregate_version",
+              "correlation_id",
+              "source_event_id",
+              "computed_at"
+            ]
+          }
+        }
+      ],
+      "gridPos": {
+        "x": 16,
+        "y": 3,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "-1": {
+                  "text": "DATOS NO CONFIABLES",
+                  "color": "gray",
+                  "index": 0
+                },
+                "-2": {
+                  "text": "SIN MUESTRA",
+                  "color": "gray",
+                  "index": 1
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1e-06
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "field": "lk3"
+      }
+    },
+    {
+      "id": 4,
+      "type": "table",
+      "title": "Identidad y tiempo del snapshot \u00b7 Grafana Live",
+      "datasource": {
+        "type": "grafana",
+        "uid": "grafana"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana",
+            "uid": "grafana"
+          },
+          "queryType": "measurements",
+          "channel": "stream/logistpulse/business",
+          "filter": {
+            "fields": [
+              "revision",
+              "correlation_id",
+              "aggregate_id",
+              "aggregate_version",
+              "computed_at",
+              "quality",
+              "quality_reason",
+              "sample"
+            ]
+          }
+        }
+      ],
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 24,
+        "h": 9
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "lastNotNull"
+            ],
+            "mode": "reduceFields"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Monitor independiente \u00b7 edad del c\u00e1lculo (s)",
+      "description": "M\u00e9trica operativa consultada cada 5 s. Si supera 3 s o no hay datos, los \u00faltimos valores Live NO confirman salud.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "time() - logistpulse_analytics_snapshot_timestamp_seconds",
+          "instant": true
+        }
+      ],
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 12,
+        "h": 5
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "SIN CONEXI\u00d3N",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "gray",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 3
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "SIN CONEXI\u00d3N",
+                  "color": "gray",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "nan",
+                "result": {
+                  "text": "SIN CONEXI\u00d3N",
+                  "color": "gray",
+                  "index": 1
+                }
+              }
+            }
+          ]
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Monitor independiente \u00b7 edad de \u00faltimo push Live (s)",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "time() - logistpulse_live_last_success_timestamp_seconds",
+          "instant": true
+        }
+      ],
+      "gridPos": {
+        "x": 12,
+        "y": 18,
+        "w": 12,
+        "h": 5
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "SIN CONEXI\u00d3N",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "gray",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 3
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "SIN CONEXI\u00d3N",
+                  "color": "gray",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "nan",
+                "result": {
+                  "text": "SIN CONEXI\u00d3N",
+                  "color": "gray",
+                  "index": 1
+                }
+              }
+            }
+          ]
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "id": 7,
+      "type": "text",
+      "title": "Contrato y validez",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 3
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Referencia acad\u00e9mica \u00b7 unidades DEMO.** L-K1: cohorte `(ahora\u2212900s, ahora\u221215s]`. L-K2/L-K3: todo backlog vencido. Cada tarjeta invalida datos tras 3s sin revisi\u00f3n. El datasource Grafana Live entrega el stream; refresh 5s solo consulta monitores t\u00e9cnicos."
+      }
+    }
+  ]
+}

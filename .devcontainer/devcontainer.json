@@ -1,5 +1,5 @@
 {
-  "name": "LOGISTPULSE Platform Engineering Lab",
+  "name": "LOGISTPULSE Reference Lab",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -8,25 +8,28 @@
       "version": "latest",
       "dockerDashComposeVersion": "v2"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
   },
   "forwardPorts": [
-    8080,
-    3000,
-    9090,
-    8088
+    28080,
+    23000,
+    29090,
+    28088
   ],
   "portsAttributes": {
-    "8080": {
+    "28080": {
       "label": "LOGISTPULSE Operations Console"
     },
-    "3000": {
+    "23000": {
       "label": "Grafana"
     },
-    "9090": {
+    "29090": {
       "label": "Prometheus"
     },
-    "8088": {
+    "28088": {
       "label": "cAdvisor"
     }
   },

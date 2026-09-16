@@ -1,0 +1,14 @@
+✔ accepts three distinct finite coherent KPI cards (12.009792ms)
+✔ rejects NaN even when the visible text is also NaN (0.127583ms)
+✔ rejects three copies of one otherwise valid KPI (0.054791ms)
+✔ rejects infinity and unknown KPI fields (0.077584ms)
+✔ rejects a stale card and an inconsistent revision (0.072833ms)
+✔ rejects a wrong displayed value and empty event identity (0.103375ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.677833
