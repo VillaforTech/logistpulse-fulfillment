@@ -36,7 +36,7 @@ El archivo de medición exportado conserva todos los tiempos y las identidades. 
 
 ## GitHub
 
-[PR de implementación #1](https://github.com/VillaforTech/LOGISTPULSE-GOLDEN_2-REFERENCE/pull/1). El [run sano inicial 34886316963](https://github.com/VillaforTech/LOGISTPULSE-GOLDEN_2-REFERENCE/actions/runs/34886316963) ejecutó d283f62 y pasó todos los jobs, incluido Release gate. El recorrido controlado rojo y el PR correctivo se documentan en [Deber 01](../deber-01.md) cuando su estado se observa.
+[PR de implementación #1](https://github.com/VillaforTech/logistpulse-reference/pull/1). El [run sano inicial 34886316963](https://github.com/VillaforTech/logistpulse-reference/actions/runs/34886316963) ejecutó d283f62 y pasó todos los jobs, incluido Release gate. El recorrido controlado rojo y el PR correctivo se documentan en [Deber 01](../deber-01.md) cuando su estado se observa.
 
 La corrida Ubuntu también observó 100/100 operaciones sin pérdidas: p50 **438.0 ms**, p95 **597.7 ms**, máximo **650.6 ms**. Su vencimiento real se detectó en **116.06 ms** y se renderizó en **251.44 ms**; las tres reconexiones pasaron. Entorno registrado: Linux x64, Node 22.23.2, Chromium 140, Docker con 4 CPU y 16,765,374,464 bytes. Se conservan [run y jobs](ci-d283f62/run.json), [mediciones](ci-d283f62/measurements.json), [negocio](ci-d283f62/business.json), [resiliencia](ci-d283f62/resilience.json) y [decisión PASS del gate](ci-d283f62/release-gate.json).
 

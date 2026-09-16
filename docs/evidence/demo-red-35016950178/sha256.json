@@ -1,0 +1,12 @@
+{
+  "release-gate.json": "4d84e93cb26a5d967e74d75a8de2795b80181bc7622f5258ad2b5ed88a6fc038",
+  "business.json": "34b4cd86990a39017c4bb8395784a2a1a548c521cc2a647fae94ab370927f099",
+  "unit.xml": "4c97d57df41d84a853f566189aad90fe8f0f896f32f0be856eaa81cbfeea01f7",
+  "panel-state.json": "a083a2dba07bbcb5487497b85e16f08addc8384bc26d3dfb32f2c713c90a2279",
+  "github-pr.json": "89bd7507edcabad7266823e173d618e7c69105ebcf2cd9e7559fb1ae494f5e5c",
+  "README.md": "aa991fe6f5bef5be33b34be56affb74ecc0addaa0fed56b09bc1ba7d3410ed62",
+  "github-run.json": "2047e205d6b87ca428468441c52600bbf68f3e719b02e586ffa014c4dc20315d",
+  "grafana.png": "35a0415428840fcc4db286ac9c2640ae35b18e973ef2b1b2b07aea5fc72aef5f",
+  "github-summary.json": "fd421f5ec821bb76102ac43691047d193561198e111d714d94646093a3068304",
+  "github-protection.json": "358d58dc1a20fcd3bdb3cb89a2a28d15d64f0e6478454f10403569528ba93178"
+}

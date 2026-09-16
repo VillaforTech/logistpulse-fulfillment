@@ -1,0 +1,22 @@
+{
+  "testedSha": "67de54d538ec358a30e11c2bfed7c20d37efb4c3",
+  "needs": {
+    "architecture-contract": {
+      "result": "success",
+      "outputs": {}
+    },
+    "unit": {
+      "result": "success",
+      "outputs": {}
+    },
+    "integration": {
+      "result": "success",
+      "outputs": {}
+    },
+    "business-lab": {
+      "result": "success",
+      "outputs": {}
+    }
+  },
+  "decision": "PASS"
+}

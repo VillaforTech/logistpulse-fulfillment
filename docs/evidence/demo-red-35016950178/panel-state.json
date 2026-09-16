@@ -1,0 +1,41 @@
+[
+  {
+    "logistpulsePanel": "lk1",
+    "revision": "251",
+    "eventId": "c09cbdf8-21c8-4f7d-9800-e39c57b8d52f",
+    "correlationId": "business-fb61850d-0a07-4575-9201-bc5ed4ab2f57",
+    "aggregateId": "ORD-7C440F0F29954AAF9220D6CD6B7709D1",
+    "aggregateVersion": "2",
+    "quality": "FRESH",
+    "value": "100",
+    "sample": "1",
+    "computedAt": "2026-09-15T20:02:43.672812Z",
+    "text": "100\nFRESH · ALERTA\nMuestra L-K1: 1 · revisión 251\nPedido ORD-7C440F0F29954AAF9220D6CD6B7709D1 · v2\nbusiness-fb61850d-0a07-4575-9201-bc5ed4ab2f57\n2026-09-15T20:02:43.672812Z"
+  },
+  {
+    "logistpulsePanel": "lk2",
+    "revision": "251",
+    "eventId": "c09cbdf8-21c8-4f7d-9800-e39c57b8d52f",
+    "correlationId": "business-fb61850d-0a07-4575-9201-bc5ed4ab2f57",
+    "aggregateId": "ORD-7C440F0F29954AAF9220D6CD6B7709D1",
+    "aggregateVersion": "2",
+    "quality": "FRESH",
+    "value": "25.5",
+    "sample": "1",
+    "computedAt": "2026-09-15T20:02:43.672812Z",
+    "text": "25,5\nFRESH · ALERTA\nMuestra L-K1: 1 · revisión 251\nPedido ORD-7C440F0F29954AAF9220D6CD6B7709D1 · v2\nbusiness-fb61850d-0a07-4575-9201-bc5ed4ab2f57\n2026-09-15T20:02:43.672812Z"
+  },
+  {
+    "logistpulsePanel": "lk3",
+    "revision": "251",
+    "eventId": "c09cbdf8-21c8-4f7d-9800-e39c57b8d52f",
+    "correlationId": "business-fb61850d-0a07-4575-9201-bc5ed4ab2f57",
+    "aggregateId": "ORD-7C440F0F29954AAF9220D6CD6B7709D1",
+    "aggregateVersion": "2",
+    "quality": "FRESH",
+    "value": "9.972551",
+    "sample": "1",
+    "computedAt": "2026-09-15T20:02:43.672812Z",
+    "text": "9,97\nFRESH · ALERTA\nMuestra L-K1: 1 · revisión 251\nPedido ORD-7C440F0F29954AAF9220D6CD6B7709D1 · v2\nbusiness-fb61850d-0a07-4575-9201-bc5ed4ab2f57\n2026-09-15T20:02:43.672812Z"
+  }
+]

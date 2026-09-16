@@ -32,15 +32,17 @@ El laboratorio de negocio es independiente del resultado unitario; guarda eviden
 
 ## 5. PR sano
 
-La implementación vive en [PR #1](https://github.com/VillaforTech/LOGISTPULSE-GOLDEN_2-REFERENCE/pull/1), rama `codex/reference-implementation` de este gemelo. El [run sano inicial 34886316963](https://github.com/VillaforTech/LOGISTPULSE-GOLDEN_2-REFERENCE/actions/runs/34886316963) pasó todos los jobs y Release gate sobre d283f62. La [selección de evidencia local](evidence/README.md) conserva 100/100 renders, p95 619.1 ms, detección de vencimiento y recuperación sin reload. Un draft o una ejecución posterior en curso no se describe como aprobada.
+El run sano actualizado [35015790965](https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965), SHA `67de54d`, pasó unidades, PostgreSQL, negocio, streaming, resiliencia y gate: 100/100 renders, cero pérdidas, p95 600.4 ms y máximo 661.7 ms. [Evidencia conservada](evidence/ci-green-35015790965/README.md). La implementación vive en [PR #1](https://github.com/VillaforTech/logistpulse-reference/pull/1), rama `codex/reference-implementation` de este gemelo. El [run sano inicial 34886316963](https://github.com/VillaforTech/logistpulse-reference/actions/runs/34886316963) pasó todos los jobs y Release gate sobre d283f62. La [selección de evidencia local](evidence/README.md) conserva 100/100 renders, p95 619.1 ms, detección de vencimiento y recuperación sin reload. Un draft o una ejecución posterior en curso no se describe como aprobada.
 
 ## 6. PR técnicamente sano con negocio roto
 
-Crear una rama de demostración desde la implementación validada, sustituir solo el resultado de `finish_preparation` por `(order, False)` y abrir PR al gemelo. Conservar todas las pruebas. La suite unitaria debe detectar la transición ausente; además el laboratorio independiente debe observar health UP y, transcurridos 19 segundos, PREPARING, L-K1=100%, L-K2=25.50 DEMO y deuda positiva. Es una regresión controlada, no una solución que deba integrarse.
+La regresión se ejecutó en [PR #2](https://github.com/VillaforTech/logistpulse-reference/pull/2), commit `666533d`: solo se omitió READY en `finish_preparation`. [Run rojo 35016950178](https://github.com/VillaforTech/logistpulse-reference/actions/runs/35016950178) pasó arquitectura y smoke técnico, pero falló unidades y la prueba independiente de negocio. El pedido seguía PREPARING a los 19.07 s, sin readyAt, con los ocho servicios UP y analítica FRESH: L-K1=100%, L-K2=25.50 DEMO y L-K3 positivo.
+
+[Captura y datos del fallo](evidence/demo-red-35016950178/README.md). El panel muestra el mismo pedido/fixture: 100%, 25.5 y 9.97 pedido-segundos en una captura posterior; el JSON de negocio observó 3.99492 s antes. No se mezclan sus timestamps.
 
 ## 7. Evidencia de bloqueo
 
-CI sube `unit-evidence`, `technical-evidence` y `business-and-streaming-evidence` antes del teardown. `business/evidence.json` contiene fixtureRunId, pedido exacto, timestamps, health y snapshots aun cuando falla la promesa. `Release gate` exige todos los jobs y bloquea omitted/cancelled/failed. El índice final enlazará el PR, run y comprobación real de protección; este texto por sí solo no los acredita.
+La captura contemporánea de GitHub conserva el PR #2 listo, OPEN, MERGEABLE y **BLOCKED** en el mismo SHA rojo, con `Release gate` requerido y enforcement de administradores. [Estado observado](evidence/demo-red-35016950178/github-summary.json). No se infiere bloqueo a partir de un draft ni de un SHA distinto. CI conservó datos, health, captura, JUnit y decisión del gate antes del teardown.
 
 ## 8. Diagnóstico y corrección
 
@@ -50,6 +52,10 @@ Para el fallo de negocio, la corrección conserva READY y readyAt en la transacc
 
 ## 9. Ejecución final y reproducción
 
-Seguir el README desde clon limpio/Codespaces: generar `.env`, arrancar, smoke, unit, PostgreSQL, contrato, 100 renders y resiliencia. Guardar commit, recursos y artifacts. El coordinador añadirá los enlaces de las ejecuciones observadas y la comprobación independiente cuando terminen. No se afirma todavía reproducción por otra persona, merge, aprobación ni entrega D2L.
+Seguir el README desde clon limpio/Codespaces: generar `.env`, arrancar, smoke, unit, PostgreSQL, contrato, 100 renders y resiliencia. Guardar commit, recursos y artifacts. El PR #2 restaura exactamente la transición READY y sus tests; su sección Checks y descripción enlazan el nuevo run de corrección una vez concluido. La evidencia histórica anterior conserva sus SHAs originales. La [reproducción completa en Codespaces limpio](evidence/codespaces-20260915/README.md) pasó el 15 de septiembre en `ba93646a30ad`: unitarias, PostgreSQL, negocio, 100/100 renders con p95 594.2 ms y recuperación. La consola privada también mostró snapshots FRESH correlacionados. Se guardó evidencia y se retiró el entorno temporal. No se afirma reproducción por otra persona, merge, aprobación ni entrega D2L.
 
 La referencia implementa ambos contratos de infraestructura y negocio; la adaptación al repositorio compartido sigue su propio flujo de PR y revisión. El gemelo no cambia los permisos del original.
+
+## Uso por el equipo
+
+Consultar el [PR de infraestructura compartida #10](https://github.com/VillaforTech/logistpulse/pull/10) y `docs/TEAM-INTEGRATION.md` en esa rama. La analítica del equipo conserva SQLite y sus propios endpoints; el gemelo es una implementación completa de referencia con PostgreSQL. Adaptar por contrato, sin sustituir la contribución ni atribuir su autoría al compañero.

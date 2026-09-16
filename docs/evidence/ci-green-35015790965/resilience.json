@@ -1,0 +1,404 @@
+{
+  "before": {
+    "lag": 0,
+    "gaps": 0,
+    "kpis": {
+      "L-K1": {
+        "unit": "percent",
+        "value": 0.9803921568627451,
+        "sample": 102,
+        "status": "OK",
+        "breached": 1
+      },
+      "L-K2": {
+        "unit": "DEMO",
+        "value": "0.00",
+        "sample": 0,
+        "status": "OK"
+      },
+      "L-K3": {
+        "unit": "order_seconds",
+        "value": 0,
+        "sample": 0,
+        "status": "OK"
+      }
+    },
+    "alerts": [
+      {
+        "kpi": "L-K1",
+        "active": true,
+        "resolved_at": null,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K2",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K3",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      }
+    ],
+    "errors": 0,
+    "quality": {
+      "reason": "",
+      "status": "FRESH"
+    },
+    "coverage": {
+      "complete": true,
+      "eventCount": 306,
+      "aggregateCount": 102
+    },
+    "revision": 2574,
+    "watermark": {
+      "occurredAt": "2026-09-15T19:57:50.469130Z",
+      "sourcePending": 0,
+      "versionDigest": "9e88572d41090abfe9511495949b2345c08d63a0f027e552771887332340c227",
+      "sourcePosition": 408,
+      "partitionOffsets": [
+        {
+          "topic": "logistpulse.fulfillment.events.v1",
+          "partition": 0,
+          "next_offset": 306
+        }
+      ],
+      "expectedSourcePosition": 408
+    },
+    "computedAt": "2026-09-15T19:58:06.076851Z",
+    "snapshotId": "4b7b2d36-3916-456f-a28e-4b6184fa5ae5",
+    "generatedAt": "2026-09-15T19:58:06.076851Z",
+    "heartbeatAt": "2026-09-15T19:58:06.041187Z",
+    "fixtureRunId": null,
+    "correlationId": "render-db528f90-9744-468c-b362-08c7eefcc5ee-deadline",
+    "schemaVersion": 1,
+    "sourceEventId": "80e88685-c405-4c31-a388-781c2ccf357f",
+    "windowSeconds": 900,
+    "deadlineSeconds": 15,
+    "sourceAggregateId": "ORD-98EBE2CCAB78400D9E0136AB354A2813",
+    "sourceAggregateVersion": 3
+  },
+  "committedWhileBrokerDown": {
+    "orderId": "ORD-3CB334FBEA1744E48ABBF44AACDCF8D6",
+    "storeId": "STORE-042",
+    "channel": "MOBILE",
+    "total": 25.5,
+    "unit": "DEMO",
+    "status": "WAITING",
+    "createdAt": 1789502286.514932,
+    "updatedAt": 1789502286.514932,
+    "readyAt": null,
+    "version": 1,
+    "fixtureRunId": "broker-outage-1e12faab-b455-440f-b925-68c7d7cf3ade",
+    "correlationId": "broker-outage-1e12faab-b455-440f-b925-68c7d7cf3ade",
+    "totalExact": "25.50",
+    "createdAtUtc": "2026-09-15T19:58:06.514932Z",
+    "updatedAtUtc": "2026-09-15T19:58:06.514932Z",
+    "readyAtUtc": null,
+    "aggregateVersion": 1,
+    "eventId": "78eb7bce-2b27-4163-8673-3ca7eb47c832",
+    "sourcePosition": 409
+  },
+  "invalidDuringOutage": {
+    "lag": 0,
+    "gaps": 0,
+    "kpis": {
+      "L-K1": {
+        "unit": "percent",
+        "value": null,
+        "sample": 102,
+        "status": "STALE",
+        "breached": 1,
+        "observedValue": 0.9803921568627451
+      },
+      "L-K2": {
+        "unit": "DEMO",
+        "value": null,
+        "sample": 0,
+        "status": "STALE",
+        "observedValue": "0.00"
+      },
+      "L-K3": {
+        "unit": "order_seconds",
+        "value": null,
+        "sample": 0,
+        "status": "STALE",
+        "observedValue": 0
+      }
+    },
+    "alerts": [
+      {
+        "kpi": "L-K1",
+        "active": true,
+        "resolved_at": null,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K2",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K3",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      }
+    ],
+    "errors": 0,
+    "quality": {
+      "reason": "Consumer or source watermark heartbeat unavailable",
+      "status": "STALE"
+    },
+    "coverage": {
+      "complete": false,
+      "eventCount": 306,
+      "aggregateCount": 102
+    },
+    "revision": 2590,
+    "watermark": {
+      "occurredAt": "2026-09-15T19:57:50.469130Z",
+      "sourcePending": 0,
+      "versionDigest": "9e88572d41090abfe9511495949b2345c08d63a0f027e552771887332340c227",
+      "sourcePosition": 408,
+      "partitionOffsets": [
+        {
+          "topic": "logistpulse.fulfillment.events.v1",
+          "partition": 0,
+          "next_offset": 306
+        }
+      ],
+      "expectedSourcePosition": 408
+    },
+    "computedAt": "2026-09-15T19:58:09.276823Z",
+    "snapshotId": "c5b46f65-9be2-470f-b14f-a5b84bdcb1b0",
+    "generatedAt": "2026-09-15T19:58:09.276823Z",
+    "heartbeatAt": "2026-09-15T19:58:06.252094Z",
+    "fixtureRunId": null,
+    "correlationId": "render-db528f90-9744-468c-b362-08c7eefcc5ee-deadline",
+    "schemaVersion": 1,
+    "sourceEventId": "80e88685-c405-4c31-a388-781c2ccf357f",
+    "windowSeconds": 900,
+    "deadlineSeconds": 15,
+    "sourceAggregateId": "ORD-98EBE2CCAB78400D9E0136AB354A2813",
+    "sourceAggregateVersion": 3
+  },
+  "recoveredOrder": {
+    "orderId": "ORD-3CB334FBEA1744E48ABBF44AACDCF8D6",
+    "storeId": "STORE-042",
+    "channel": "MOBILE",
+    "total": 25.5,
+    "unit": "DEMO",
+    "status": "READY",
+    "createdAt": 1789502286.514932,
+    "updatedAt": 1789502294.778858,
+    "readyAt": 1789502294.778858,
+    "version": 3,
+    "fixtureRunId": "broker-outage-1e12faab-b455-440f-b925-68c7d7cf3ade",
+    "correlationId": "broker-outage-1e12faab-b455-440f-b925-68c7d7cf3ade",
+    "totalExact": "25.50",
+    "createdAtUtc": "2026-09-15T19:58:06.514932Z",
+    "updatedAtUtc": "2026-09-15T19:58:14.778858Z",
+    "readyAtUtc": "2026-09-15T19:58:14.778858Z",
+    "aggregateVersion": 3
+  },
+  "confirmedSourceCut": {
+    "sourcePosition": 412,
+    "pending": 0,
+    "checkedAt": 1789502295.228809,
+    "aggregateCount": 103,
+    "versionDigest": "3d162167fe750c84af617bc3529201a4a1ff3a94e1a4c224e24b5fd0f230b89b"
+  },
+  "beforeAnalyticsRestart": {
+    "lag": 0,
+    "gaps": 0,
+    "kpis": {
+      "L-K1": {
+        "unit": "percent",
+        "value": 0.9803921568627451,
+        "sample": 102,
+        "status": "OK",
+        "breached": 1
+      },
+      "L-K2": {
+        "unit": "DEMO",
+        "value": "0.00",
+        "sample": 0,
+        "status": "OK"
+      },
+      "L-K3": {
+        "unit": "order_seconds",
+        "value": 0,
+        "sample": 0,
+        "status": "OK"
+      }
+    },
+    "alerts": [
+      {
+        "kpi": "L-K1",
+        "active": true,
+        "resolved_at": null,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K2",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K3",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      }
+    ],
+    "errors": 0,
+    "quality": {
+      "reason": "",
+      "status": "FRESH"
+    },
+    "coverage": {
+      "complete": true,
+      "eventCount": 309,
+      "aggregateCount": 103
+    },
+    "revision": 2619,
+    "watermark": {
+      "occurredAt": "2026-09-15T19:58:14.781028Z",
+      "sourcePending": 0,
+      "versionDigest": "3d162167fe750c84af617bc3529201a4a1ff3a94e1a4c224e24b5fd0f230b89b",
+      "sourcePosition": 412,
+      "partitionOffsets": [
+        {
+          "topic": "logistpulse.fulfillment.events.v1",
+          "partition": 0,
+          "next_offset": 309
+        }
+      ],
+      "expectedSourcePosition": 412
+    },
+    "computedAt": "2026-09-15T19:58:15.076890Z",
+    "snapshotId": "e8f72e4b-0cea-4cf2-bc7d-60cbeb94bb58",
+    "generatedAt": "2026-09-15T19:58:15.076890Z",
+    "heartbeatAt": "2026-09-15T19:58:15.077248Z",
+    "fixtureRunId": null,
+    "correlationId": "broker-outage-1e12faab-b455-440f-b925-68c7d7cf3ade",
+    "schemaVersion": 1,
+    "sourceEventId": "f13ea9c6-42fb-4957-9b73-b6a2300232cd",
+    "windowSeconds": 900,
+    "deadlineSeconds": 15,
+    "sourceAggregateId": "ORD-3CB334FBEA1744E48ABBF44AACDCF8D6",
+    "sourceAggregateVersion": 3
+  },
+  "adapterDuringAnalyticsOutage": {
+    "status": "UP",
+    "stream": "stream/logistpulse/business",
+    "ready": false,
+    "lastPush": 1789502299.221282,
+    "lastSnapshot": 1789502295.3314366,
+    "revision": 2620,
+    "errors": 24
+  },
+  "afterAnalyticsRestart": {
+    "lag": 0,
+    "gaps": 0,
+    "kpis": {
+      "L-K1": {
+        "unit": "percent",
+        "value": 0.970873786407767,
+        "sample": 103,
+        "status": "OK",
+        "breached": 1
+      },
+      "L-K2": {
+        "unit": "DEMO",
+        "value": "0.00",
+        "sample": 0,
+        "status": "OK"
+      },
+      "L-K3": {
+        "unit": "order_seconds",
+        "value": 0,
+        "sample": 0,
+        "status": "OK"
+      }
+    },
+    "alerts": [
+      {
+        "kpi": "L-K1",
+        "active": true,
+        "resolved_at": null,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K2",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      },
+      {
+        "kpi": "L-K3",
+        "active": false,
+        "resolved_at": 1789502270.67702,
+        "activated_at": 1789502264.27684
+      }
+    ],
+    "errors": 0,
+    "quality": {
+      "reason": "",
+      "status": "FRESH"
+    },
+    "coverage": {
+      "complete": true,
+      "eventCount": 309,
+      "aggregateCount": 103
+    },
+    "revision": 2624,
+    "watermark": {
+      "occurredAt": "2026-09-15T19:58:14.781028Z",
+      "sourcePending": 0,
+      "versionDigest": "3d162167fe750c84af617bc3529201a4a1ff3a94e1a4c224e24b5fd0f230b89b",
+      "sourcePosition": 412,
+      "partitionOffsets": [
+        {
+          "topic": "logistpulse.fulfillment.events.v1",
+          "partition": 0,
+          "next_offset": 309
+        }
+      ],
+      "expectedSourcePosition": 412
+    },
+    "computedAt": "2026-09-15T19:58:21.613080Z",
+    "snapshotId": "27ae8add-594f-4c53-b3ea-c33fa67ed90e",
+    "generatedAt": "2026-09-15T19:58:21.613080Z",
+    "heartbeatAt": "2026-09-15T19:58:21.610928Z",
+    "fixtureRunId": null,
+    "correlationId": "broker-outage-1e12faab-b455-440f-b925-68c7d7cf3ade",
+    "schemaVersion": 1,
+    "sourceEventId": "f13ea9c6-42fb-4957-9b73-b6a2300232cd",
+    "windowSeconds": 900,
+    "deadlineSeconds": 15,
+    "sourceAggregateId": "ORD-3CB334FBEA1744E48ABBF44AACDCF8D6",
+    "sourceAggregateVersion": 3
+  },
+  "independentOracle": {
+    "cohort": 103,
+    "breached": 1,
+    "openOverdue": 0
+  },
+  "afterGrafanaRestart": {
+    "status": "UP",
+    "stream": "stream/logistpulse/business",
+    "ready": true,
+    "lastPush": 1789502304.5098653,
+    "lastSnapshot": 1789502304.4996192,
+    "revision": 2638,
+    "errors": 4
+  },
+  "passed": true
+}

@@ -1,0 +1,65 @@
+{
+  "baseRefName": "main",
+  "headRefName": "codex/reference-implementation",
+  "headRefOid": "67de54d538ec358a30e11c2bfed7c20d37efb4c3",
+  "isDraft": false,
+  "mergeStateStatus": "CLEAN",
+  "mergeable": "MERGEABLE",
+  "number": 1,
+  "reviewDecision": "",
+  "state": "OPEN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-15T19:48:18Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965/job/104538745494",
+      "name": "architecture-contract",
+      "startedAt": "2026-09-15T19:48:12Z",
+      "status": "COMPLETED",
+      "workflowName": "LOGISTPULSE CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-15T19:48:40Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965/job/104538795635",
+      "name": "unit",
+      "startedAt": "2026-09-15T19:48:21Z",
+      "status": "COMPLETED",
+      "workflowName": "LOGISTPULSE CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-15T19:49:34Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965/job/104538795713",
+      "name": "integration",
+      "startedAt": "2026-09-15T19:48:21Z",
+      "status": "COMPLETED",
+      "workflowName": "LOGISTPULSE CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-15T19:58:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965/job/104538795672",
+      "name": "Business lab and native streaming",
+      "startedAt": "2026-09-15T19:48:20Z",
+      "status": "COMPLETED",
+      "workflowName": "LOGISTPULSE CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-15T19:58:56Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965/job/104542190968",
+      "name": "Release gate",
+      "startedAt": "2026-09-15T19:58:49Z",
+      "status": "COMPLETED",
+      "workflowName": "LOGISTPULSE CI"
+    }
+  ],
+  "title": "Reference: enforce fulfillment promise with durable analytics and Grafana Live",
+  "url": "https://github.com/VillaforTech/logistpulse-reference/pull/1"
+}

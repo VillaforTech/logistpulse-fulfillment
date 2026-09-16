@@ -1,0 +1,14 @@
+{
+  "release-gate.json": "f7493d86a0e5f9321e8bc41851e1c60fa031aed159d7f3cdfc4d8d7b031f6565",
+  "business.json": "ca9e2f22fd22e24b4b981b818f49b3eaed287f083656b09a960eb7632f119912",
+  "database-tests.xml": "f04b69a520a0fa5bfe2539fc0f233b3c28dc3a1685a9e4287d8b93b15803721d",
+  "unit.xml": "0d0e506e60a12e48147aca86081591b85ddbca40e62c6634e592b2e19a4b7ab5",
+  "github-pr.json": "7b4e6434b75fda4e8ad8d16409af9d55b033f0eab891067a3ffa7baa9dcdf7dd",
+  "README.md": "22d4299498aa923577db1e68aad581f1bcd2600e4ce03bb245d5761c4d44f847",
+  "github-run.json": "7c7eb24da1e1970833010d2761d23e99d01ab47a9ffa2b7f26c5d6239cf409eb",
+  "grafana.png": "da596754f6cb9dd978d36a82f9647e9802d09b61405139b5b82d62aa7307b1fb",
+  "github-summary.json": "1f138597ac9e6398f4c2b41db2e62683842478551b258dc29b3da0ca6b92341b",
+  "github-protection.json": "358d58dc1a20fcd3bdb3cb89a2a28d15d64f0e6478454f10403569528ba93178",
+  "resilience.json": "cc52aea66057fc3e497fcc5d269ed15fea2e809f68c2c47ce96894abdc0c7777",
+  "streaming.json": "e38b4c8766eb05454ba4bbd2d0d8eb222b52b98f264a951c162fb923d8a33ddf"
+}

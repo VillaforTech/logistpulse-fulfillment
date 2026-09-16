@@ -1,0 +1,24 @@
+{
+  "capturedAt": "2026-09-15T20:00:00.010218+00:00",
+  "repository": "VillaforTech/LOGISTPULSE-GOLDEN_2-REFERENCE",
+  "pr": "https://github.com/VillaforTech/logistpulse-reference/pull/1",
+  "run": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965",
+  "prHeadSha": "67de54d538ec358a30e11c2bfed7c20d37efb4c3",
+  "runHeadSha": "67de54d538ec358a30e11c2bfed7c20d37efb4c3",
+  "sameSha": true,
+  "prState": "OPEN",
+  "isDraft": false,
+  "mergeStateStatus": "CLEAN",
+  "requiredChecks": [
+    "Release gate"
+  ],
+  "gateJobs": [
+    {
+      "name": "Release gate",
+      "conclusion": "success",
+      "url": "https://github.com/VillaforTech/logistpulse-reference/actions/runs/35015790965/job/104542190968"
+    }
+  ],
+  "requiredGateFailureAndBlockedPrObserved": false,
+  "scope": "GitHub state only; inspect same-SHA business/health artifacts separately."
+}
