@@ -1,6 +1,6 @@
-# Reproducción del gemelo en Codespaces
+# Ejecutar LogistPulse Fulfillment en Codespaces
 
-Usar este repositorio `LOGISTPULSE-GOLDEN_2-REFERENCE`, con la rama de referencia indicada por el PR. No abrir el original para estos comandos. El devcontainer declara Python 3.12, Node 22, Docker/Compose y GitHub CLI. Al crear el contenedor genera `.env` privado y la URL del puerto 28080; no publica credenciales.
+Crear el Codespace desde [LogistPulse Fulfillment](https://github.com/VillaforTech/logistpulse-fulfillment), en `main` o en la rama del PR que se va a evaluar. El devcontainer declara Python 3.12, Node 22, Docker/Compose y GitHub CLI. Al crear el contenedor genera `.env` privado y la URL del puerto 28080; no publica credenciales.
 
 ```bash
 bash scripts/up.sh
@@ -23,6 +23,6 @@ bash scripts/down.sh
 
 Abrir el puerto **28080** en Ports para consola y `/grafana/d/logistpulse-business/logistpulse-business`. Puertos adicionales: Grafana 23000, Prometheus 29090, cAdvisor opcional 28088. Mantener la visibilidad privada del Codespace. El usuario/clave de Grafana están en `.env` del propio Codespace. `PUBLIC_BASE_URL` debe ser la URL pública de su puerto28080; el configurador la deduce de las variables de Codespaces.
 
-Usar `scripts/compose.sh` como único wrapper: combina aplicación/observabilidad y aísla red y volúmenes con `logistpulse-reference`. No levantar los dos manifiestos por separado. Las pruebas de navegador se ejecutan en el contenedor contra `localhost:28080`; no requieren exponer puertos ni modificar permisos de GitHub.
+Usar `scripts/compose.sh` como único wrapper: combina aplicación/observabilidad y aísla red y volúmenes con su nombre de proyecto configurado. No levantar los dos manifiestos por separado. Las pruebas de navegador se ejecutan en el contenedor contra `localhost:28080`; no requieren exponer puertos ni modificar permisos de GitHub.
 
-Guardar SHA probado, logs y reportes. La configuración no prueba que una persona haya reproducido el laboratorio: esa evidencia se registra por separado cuando ocurra. Hasta entonces la reproducción en Codespaces permanece pendiente.
+Guardar SHA probado, logs y reportes. La configuración no prueba que una persona haya reproducido el laboratorio: esa evidencia se registra por separado cuando ocurra. La ejecución del 15 de septiembre de 2026 y sus límites están registrados en [la evidencia de Codespaces](evidence/codespaces-20260915/README.md).

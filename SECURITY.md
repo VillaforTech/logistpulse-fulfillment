@@ -1,6 +1,6 @@
 # Security policy
 
-This LogistPulse reference is a development environment built with synthetic orders, stores and telemetry. Its local credentials are not suitable for a public deployment.
+This LogistPulse Fulfillment development environment is built with synthetic orders, stores and telemetry. Its local credentials are not suitable for a public deployment.
 
 - Never commit real API keys, passwords, certificates, personal data or production connection strings.
 - Report a suspected vulnerability privately to the repository owner instead of opening an issue with exploit details.

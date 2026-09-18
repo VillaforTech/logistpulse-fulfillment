@@ -1,6 +1,6 @@
-# Observabilidad de la referencia
+# Observabilidad de LogistPulse Fulfillment
 
-Arrancar desde la raíz con `bash scripts/up.sh`. El wrapper `scripts/compose.sh` combina los manifiestos con un único proyecto aislado `logistpulse-reference`.
+Arrancar desde la raíz con `bash scripts/up.sh`. El wrapper `scripts/compose.sh` combina los manifiestos con un único proyecto aislado.
 
 - Consola y Grafana por proxy: puerto 28080, enlace **Business KPIs**.
 - Grafana directo: puerto 23000, ruta `/grafana/`; credenciales generadas en `.env` privado.
