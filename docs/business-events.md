@@ -23,7 +23,7 @@ Envelope: `schemaVersion:1`, eventId UUID, eventType, aggregateType `Order`, agg
 
 Bootstrap usa un snapshot completo del API con corte REPEATABLE READ y watermark. Los heartbeats posteriores comparan pending, posición, número de agregados y digest ordenado de `(orderId,version)`; no se usa solo un máximo que podría ocultar un pedido entero perdido. Si el legado tenía READY sin readyAt, el bootstrap declara cobertura incompleta y no fabrica la fecha.
 
-Snapshot v1: snapshotId UUID, computedAt, revision, sourceEventId, sourceAggregateId/version, correlationId, watermark de offsets y posición, quality, coverage, kpis, alertas, deadlineSeconds y windowSeconds. Un timer persistente deriva plazos del estado; no depende de recibir otro evento. El adapter reconecta mediante snapshot REST + WS, ignora revisiones viejas y publica STALE durante una desconexión. Broker, PostgreSQL y Grafana mantienen volúmenes exclusivos del gemelo.
+Snapshot v1: snapshotId UUID, computedAt, revision, sourceEventId, sourceAggregateId/version, correlationId, watermark de offsets y posición, quality, coverage, kpis, alertas, deadlineSeconds y windowSeconds. Un timer persistente deriva plazos del estado; no depende de recibir otro evento. El adapter reconecta mediante snapshot REST + WS, ignora revisiones viejas y publica STALE durante una desconexión. Broker, PostgreSQL y Grafana mantienen volúmenes exclusivos del proyecto.
 
 ## Verificación
 
